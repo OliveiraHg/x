@@ -1,0 +1,7 @@
+- in: query
+name: skip
+description: number of records to skip for pagination
+schema:
+  type: integer
+  format: int32
+  minimum: 0

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 Not Found - EASY API</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        overflow: hidden;
+        background-color: #212121;
+      }
+
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: #fff;
+      }
+
+      .title {
+        font-size: 200px;
+        opacity: 0;
+        transform: translateY(50px);
+        animation: fadeInUp 1s forwards;
+      }
+
+      .message {
+        font-size: 30px;
+        opacity: 0;
+        transform: translateY(50px);
+        animation: fadeInUp 1s forwards 0.5s;
+      }
+      img {
+        max-width: 500px; /* Adjust as needed */
+        height: auto;
+      }
+      .animated-background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://api.easy0.repl.co/404.png");
+        background-size: cover;
+        background-position: center;
+        filter: blur(20px);
+        opacity: 0;
+        animation: fadeIn 2s forwards;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img class="title" src="https://api.easy0.repl.co/404.png" />
+      <p class="message">
+        Oops! It looks like the resource you are trying to access on EASY API is
+        not available.
+      </p>
+      <div class="animated-background"></div>
+    </div>
+  </body>
+</html>
