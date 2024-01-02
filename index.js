@@ -18,7 +18,7 @@ app.use(requestIp.mw({ attributeName: "clientIp" }));
 const funapi = process.env["isoyapikey"];
 const chatgptapi = process.env.chatgptapikey;
 
-const port = process.env.PORT || 2000;
+const port = process.env.PORT || 4000;
 
 const apiModules = [
   "gpt",
