@@ -20,7 +20,7 @@ module.exports = {
 							width: '512',
 							height: '512',
 							styleId: '178',
-							styleLabel: 'Hotpot Art 11',
+							styleLabel: 'Concept Art 7',
 							isPrivate: 'false',
 							price: '0',
 							requestId: '8-hdbv0848lh5zior',

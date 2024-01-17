@@ -36,7 +36,15 @@ module.exports = {
         });
       } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Translation error' });
+        const stats = `
+{
+ "status":200,
+ "message":${error.message},
+ "success":false
+}    
+    
+        `;
+        res.status(500).json(status);
       }
     });
   },

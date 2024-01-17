@@ -4,7 +4,7 @@ module.exports = {
 
 
 
-		const API_KEY = "06MYbAOktsuJ2z9Yvyk4Tp1II5QCFW48iWxINdSjnta7GyBL";
+		const API_KEY = "oiKOpDmsQCfJ82eMmJWvD-7yeFsBObexTuEdzygp9CttMdnO";
 		const CONTENT_TYPE = "image/jpeg";
 		const OUTPUT_CONTENT_TYPE = "image/jpeg";
 

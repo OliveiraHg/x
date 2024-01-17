@@ -18,9 +18,9 @@ app.get('/api/llama', async (req, res) => {
   method: 'POST',
   url: 'https://www.llama2.ai/api',
   data: {
-    prompt,
+    prompt:`<s>[INST] <<SYS>>\n${prompt}\n<</SYS>>\n\nhi [/INST]\n`,
     model:"meta/llama-2-70b-chat",
-    systemPrompt: 'You are a helpful assistant.',
+    systemPrompt: '<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nhi [/INST]\n',
     temperature: 0.75,
     topP: 0.9,
     maxTokens: 800,

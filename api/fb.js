@@ -48,8 +48,8 @@ var options = {
 
               switch (status) {
                 case "complete":
-                  var content = response.data;
-                  res.json({ content });
+                  var content = response.data.payload[0].path;
+                  res.json({ url:content });
                   break;
 
                 case "working":

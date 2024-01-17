@@ -20,7 +20,7 @@ module.exports = {
 
         var options = {
           method: "GET",
-          url: "https://ai.easy-api.repl.co/api/" + ai,
+          url: "https://ai.ea-sy.tech/api/" + ai,
           params: { query: q },
           headers: { "User-Agent": "insomnia/8.4.5" },
         };

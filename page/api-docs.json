@@ -16,6 +16,10 @@
     {
       "url": "https://api.easy-api.online",
       "description": "Easy API"
+    },
+    {
+        "url":"https://gemini.easy0.xyz",
+        "description":"EASY AI GEMINI API"
     }
   ],
   "tags": [

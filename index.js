@@ -21,6 +21,8 @@ const chatgptapi = process.env.chatgptapikey;
 const port = process.env.PORT || 4000;
 
 const apiModules = [
+    "fbdl",
+    "lyrics",
     'bgr',
     "fb",
     "easy",
