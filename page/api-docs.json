@@ -46,6 +46,9 @@
     {
       "name": "EDUC",
       "description": "Educational Content"
+    },{
+        "name":"DOWNLOADER",
+        "description":"API for downloading"
     }
   ],
   "paths": {
@@ -810,7 +813,9 @@
                 "mythomist",
                 "nous-capybara-7b",
                 "cinematika",
-                "mixtral"
+                "mixtral",
+                "gemma",
+                "cinematika"
               ]
             }
           },
@@ -846,6 +851,90 @@
           },
           "404": {
             "description": "Images not found for the specified category"
+          }
+        }
+      }
+    },
+    "/v1/completion/claude": {
+	"get": {
+		"tags": ["AI"],
+		"summary": "Claude 3 AI by Anthropic AI",
+		"description": "Claude is a next generation AI assistant built for work and trained to be safe, accurate, and secure.",
+		"operationId": "claudeai",
+		"parameters": [
+			
+			
+			{
+				"name": "content",
+				"in": "query",
+				"description": "query",
+				"required": true,
+				"schema": {
+					"type": "string"
+				}
+			}
+		],
+		"responses": {
+			"200": {
+				"description": "Successful operation",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"items": {
+								"type": "string",
+								"format": "application/json",
+								"example": {
+									"status": "int",
+									"maintain_by": "string",
+									"content": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"404": {
+				"description": "not found"
+			}
+		}
+	}
+},
+    "/api/tiktok": {
+      "get": {
+        "tags": ["DOWNLOADER"],
+        "summary": "TikTok Video Downloader",
+        "description": "API for downloading Tiktok Video",
+        "operationId": "tikdl",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "description": "Url of the tiktok video you want to download",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "json/string": {
+                "schema": {
+                  "type": "json",
+                  "items": {
+                    "type": "object",
+                    "format": "image",
+                    "example": "object"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }

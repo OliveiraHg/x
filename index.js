@@ -19,8 +19,20 @@ const funapi = process.env["isoyapikey"];
 const chatgptapi = process.env.chatgptapikey;
 
 const port = process.env.PORT || 4000;
+app.use((req, res, next) => {
+  const forwardedFor = req.headers['x-forwarded-for'];
 
+  if (forwardedFor) {
+    next();
+  } else {
+    // Block direct IP access
+    res.status(403).json({ error: 'Forbidden - Direct IP access is not allowed' });
+  }
+});
 const apiModules = [
+    "claude",
+    "gpt-4",
+    "realvisxl-v3",
     "fbdl",
     "lyrics",
     'bgr',

@@ -18,23 +18,32 @@ module.exports = {
             .json({ error: "Bad request blank 'ap' & 'q' params" });
         }
 
-        var options = {
-          method: "GET",
-          url: "https://ai.ea-sy.tech/api/" + ai,
-          params: { query: q },
-          headers: { "User-Agent": "insomnia/8.4.5" },
-        };
+      const options = {
+        method: 'POST',
+        url: 'https://ai.ea-sy.tech/v1/chat/completion',
+        headers: {
+          'Content-Type': 'application/json',
+          'User-Agent': 'Your-User-Agent', // Add a proper User-Agent header
+        },
+        data: {
+          message: q,
+          model: ai,
+          apikey: 'zie-ai-v1-cde4fc58-0fae-47d2-9b6a-c0374c980067',
+        },
+      };
 
         axios
           .request(options)
           .then(function (response) {
             res.json(response.data);
+            console.log(response.data)
           })
           .catch(function (error) {
             console.error(error);
           });
       } catch (error) {
         res.status(500).json({ error: "Internal Server Error" });
+        console.error(error)
       }
     });
   },

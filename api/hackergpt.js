@@ -1,44 +1,72 @@
 module.exports = {
-	run: async function ({port ,app ,OpenAI ,bodyParser,express,axios }) {
+  run: async function ({ port, app, OpenAI, bodyParser, express, axios }) {
 
+    async function token() {
+      const options = {
+        method: "POST",
+        url: "https://securetoken.googleapis.com/v1/token",
+        params: { key: "AIzaSyCQ8QlvMtQvpnj_7sfEIE8-YorcFOGlHCo" },
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "User-Agent": "insomnia/8.5.1",
+          Referer: "https://www.hackergpt.co/",
+        },
+        data: {
+          grant_type: "refresh_token",
+          refresh_token:
+            "AMf-vByoxp1FeqmDXZnBFg2Y_qnwC6UzHRjhrrxWHlJ8Oty5YXl7kwIL5KaqOyJi6M_wP0cySDzgMgk6gvYOVH_veI5Adv_oNaPkxq4YJBANF6y0sSy7-7ll54E-GoIa3i-Q27IHtUxllRIoHluyugbJoeLDSgZ5QfAaFcvcDKRCAfFrPxXD-weIZTBPeE8NJOi0hwoJY4GnLS3vAqdRFbVZS_YGaCyihXA4kVBrIoazqChoWfW1HljCDFDGYtDtkrWqPNG1H-16uysNNvwU1gNPh4rKUzIUZdgDBPD32HTMxnu05KNQeqEOn4qujx2acTnYtMymWFItpjw5nJAAo7D4luKEzcX6sJDTXGgSeBCFHMo56CIrQT1OprSHzuI5GSwv2t4ib4-Y2K9ld-aXErprPMKGxbgdIUBowoYw7JCKBXDF2g3_KLhEEYtrv1u_CHOLK76tx2OB-sx692Qyg2Vca6KxDO_sPA",
+        },
+      };
 
+      try {
+        const response = await axios.request(options);
+        const token = response.data.access_token;
+        return token;
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    }
 
-app.get('/v1/hackergpt', async (req, res) => {
-	try {
-		const q = req.query.q;
+    async function hackergpt(query, token) {
+      const options = {
+        method: 'POST',
+        url: 'https://www.hackergpt.co/api/chat',
+        headers: {
+          'Content-Type': 'application/json',
+          'User-Agent': 'insomnia/8.5.1',
+          Authorization: 'Bearer ' + token,
+        },
+        data: {
+          model: 'gpt-3.5-turbo-instruct',
+          messages: [{ role: 'user', content: query }],
+          toolId: 'enhancedsearch',
+        },
+      };
 
-		if(!q){
-			res.json({error:"Invalid Request blank 'q'"});
-			return false;
-		}
-		var options = {
-			method: 'POST',
-			url: 'https://www.hackergpt.chat/api/chat',
-			headers: {
-				'Content-Type': 'application/json',
-				'User-Agent': 'insomnia/8.4.5',
-				Authorization: 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYmQyOTllODU2MmU3MmYyZThkN2YwMTliYTdiZjAxMWFlZjU1Y2EiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQWRvbmlzIEpyLiBTYW4gSnVhbiBTYW5jaGV6IiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0pWcDZvWEZCUkFnNUI4V1JpZEhpSVhibmVYeWRWY2VOSFFwcThiV2ZlbnpRVT1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9oYWNrZXJncHQtNmM3OWUiLCJhdWQiOiJoYWNrZXJncHQtNmM3OWUiLCJhdXRoX3RpbWUiOjE3MDEyNzU2NzUsInVzZXJfaWQiOiJCR0w4V0tOeEpFT2lpWWdTclNQdjNUVFQxQ0IyIiwic3ViIjoiQkdMOFdLTnhKRU9paVlnU3JTUHYzVFRUMUNCMiIsImlhdCI6MTcwMTM2NTMzMCwiZXhwIjoxNzAxMzY4OTMwLCJlbWFpbCI6ImFkb25pc2pyc2FuanVhbkBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjEwODc3Njg0Mjk0ODI5OTkwMzYxNCJdLCJlbWFpbCI6WyJhZG9uaXNqcnNhbmp1YW5AZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.ItnJ8NimyoKJC9WzSS4i0gJr0cTx_VPdNVCGRAP8LFu9yD8gvYEwLYVWAan1tIuGUWKPUVdqaImyxOvFi6ScmXXVpvgHKdHg6iAWVy6TxVI4rETCwUuuL309sDtc5dbaGgf-QAp0ToZcrUEZWNT-4EFxsf2Ji54W7qSSgMaC1j3caR407JlCjfpEqp3VuVx4MI2t0KRLc-30ErWTjTijQxH_TC_ieNR8fVaj8dOAWWIzQc8VDn3kCSuxnfnex9QNabFH0FrDrsSEe8LEdbYJ4sa1Z_vw5rdfisPKKiD2CDLi-8Zn4nGFYnrbuSuWUieqCXGH8JSAIrduIPqMS9ZXlA'},
-			data: {
-				model: 'gpt-3.5-turbo-instruct',
-				messages: [{role: 'user', content:q}]
-			}
-		};
+      try {
+        const response = await axios.request(options);
+        return response.data;
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    }
 
-		axios.request(options).then(function (response) {
-			const data = response.data;
-		res.json({Dev:"ADONIS",
-						 content:data
-						 });
-		}).catch(function (error) {
-			console.error(error);
-		});
-	} catch (error) {
-
-		res.status(500).json({ error: 'example error' });
-	}
-});
-
-
-
-	},
+    app.get('/v1/hackergpt', async (req, res) => {
+      try {
+          const q  = req.query.q ;
+        const t = await token();
+        if(!q){
+            res.status(400).json({error:"Invalid Request q parameter required"});
+            return false
+        }
+        const result = await hackergpt(q, t);
+        res.json({content: result});
+      } catch (error) {
+        console.error("Failed to get token:", error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+    });
+  },
 };
