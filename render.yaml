@@ -1,2 +1,12 @@
 build:
   nodeVersion: 16.x
+
+services:
+  - type: web
+    name: my-web-service
+    env: node
+    buildCommand: 'npm install'
+    startCommand: 'npm start'
+    envVars:
+      - key: NODE_VERSION
+        value: 16.x
