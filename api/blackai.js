@@ -40,7 +40,7 @@ module.exports = {
         const jsonResponse = `{
           "status": 200,
           "model": "Blackbox AI",
-          "developer": "ADONIS JR S:EASY TECH API",
+          "developer": "XNIL",
           "response": ${answerString}  
         }`;
 
