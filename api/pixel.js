@@ -10,7 +10,7 @@ module.exports = {
 					res.json({error: "Invalid Query required(p)"});
 					return false;
 				}
-				if(api != "ISOYXD"){
+				if(api != "xnil"){
 				res.status(401).json({ error: "Unauthorized. Please provide valid credentials or authentication token." });
 				return false
 				}

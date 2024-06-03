@@ -383,7 +383,11 @@
             }
           }
         ],
-        "responses": null
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+        }
+      }
       }
     },
     "/v1/pixel": {
@@ -405,7 +409,7 @@
           {
             "name": "api",
             "in": "query",
-            "description": "Api value must be 'ISOYXD'",
+            "description": "Api value must be 'xnil'",
             "required": true,
             "schema": {
               "type": "string"

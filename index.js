@@ -15,8 +15,8 @@ app.use(express.json());
 app.use(cors());
 app.use(requestIp.mw({ attributeName: "clientIp" }));
 
-const funapi = process.env["isoyapikey"];
-const chatgptapi = process.env.chatgptapikey;
+const funapi = "xnil";
+const chatgptapi = "xnil";
 
 const port = process.env.PORT || 4000;
 app.use((req, res, next) => {
@@ -39,6 +39,7 @@ const apiModules = [
     "fb",
     "easy",
   "trans",
+  "mid",
   "gpt",
   "vicuna",
   "hentaigif",
@@ -119,13 +120,13 @@ apiModules.forEach((moduleName) => {
       funapi,
     });
     console.log(
-      `[ EASY API ]`.blue,
+      `[ XNIL API ]`.blue,
       ` = > `.red,
       `${moduleName} API initialized successfully`.green,
     );
   } catch (error) {
     console.log(
-      `[ EASY API ]`.red,
+      `[ XNIL ]`.red,
       `= >`.green,
       `Error occur while initializing ${moduleName} API`.green,
     );
@@ -149,8 +150,8 @@ app.listen(port, () => {
   });
 
   printTextArt("REST API");
-  printTextArt("EASY API");
-  printTextArt(`DEVELOPED BY \n\n\nADONIS\n\n DEV`);
+  printTextArt("XNIL API");
+  printTextArt(`DEVELOPED BY \n\n\nXNIL\n\n DEV`);
 });
 
 const figlet = require("figlet");

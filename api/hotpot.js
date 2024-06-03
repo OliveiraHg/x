@@ -12,7 +12,7 @@ module.exports = {
 					headers: {
 						'Content-Type': 'application/x-www-form-urlencoded',
 						'User-Agent': 'insomnia/8.4.5',
-						Authorization: 'hotpot-t81011n88MmVw8uaDzmoBq'
+						Authorization: 'yMHw4UidZM1Hha82AZtMjI50bYCfC3sdX7vvB'
 					},
 					data: {
 						seedValue: 'null',

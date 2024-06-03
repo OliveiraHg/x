@@ -2,7 +2,7 @@ const axios = require('axios');
 
 exports.run = async function({ port, app }) {
 	app.get('/api/grammar', async (req, res) => {
-		const apiKey = '0OI8HSJF5MZI7GD7CWK1CWCPJ122TB1K';// api key
+		const apiKey = 'R0COMI1E0DWEQ33H440UX2PITGQ68D9A';// api key
 		const apiUrl = 'https://api.sapling.ai/api/v1/edits';
 		const query = req.query.query;
 
