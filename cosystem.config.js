@@ -1,6 +1,6 @@
 module.exports = {
   apps: [{
-    name: 'EASY API',
+    name: 'XNIL API',
     script: 'index.js',
     watch: false,
   }],

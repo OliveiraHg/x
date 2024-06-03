@@ -1,11 +1,11 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "description": "Welcome to the Easy Tech API, a cutting-edge startup API provider specializing in a diverse range of services. Explore the world of technology with our APIs, designed to deliver innovative solutions and enhance your applications. Whether you're interested in random anime facts, AI-powered image generation, grammar checks, or historical figure information, Easy Tech API has you covered.\n\nLearn more about Swagger at [http://swagger.io](http://swagger.io) or connect with us on [irc.freenode.net, #swagger](http://swagger.io/irc/).\n",
+    "description": "Welcome to the XNIL API",
     "version": "1.0.0",
-    "title": "Easy Tech API",
+    "title": "XNIL API",
     "contact": {
-      "email": "easyapi0@gmail.com"
+      "email": "xnilxhowdhury@gmail.com"
     },
     "license": {
       "name": "Apache 2.0",
@@ -14,17 +14,13 @@
   },
   "servers": [
     {
-      "url": "https://api.easy-api.online",
-      "description": "Easy API"
-    },
-    {
-        "url":"https://gemini.easy0.xyz",
-        "description":"EASY AI GEMINI API"
+      "url": "https://53f740b2-baa4-4528-a67e-e5691e7c9c1f-00-37j2h64nkz0qz.pike.replit.dev",
+      "description": "XNIL API"
     }
   ],
   "tags": [
     {
-      "name": "SFW",
+      "name": "DOWNLOADER",
       "description": "Safe For Work"
     },
     {
@@ -47,7 +43,7 @@
       "name": "EDUC",
       "description": "Educational Content"
     },{
-        "name":"DOWNLOADER",
+        "name":"SFW",
         "description":"API for downloading"
     }
   ],
@@ -841,7 +837,7 @@
                     "format": "application/json",
                     "example": {
                       "status": "int",
-                      "maintain_by": "string",
+                      "maintain_by": "XNiL",
                       "content": "string"
                     }
                   }
@@ -886,7 +882,7 @@
 								"format": "application/json",
 								"example": {
 									"status": "int",
-									"maintain_by": "string",
+									"maintain_by": "XNIL",
 									"content": "string"
 								}
 							}
