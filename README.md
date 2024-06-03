@@ -1,2 +1,2 @@
-# API
- EASY API REST API
+# REST API
+update coming soon 
