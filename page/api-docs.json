@@ -1,943 +1,701 @@
-{
-  "openapi": "3.0.0",
-  "info": {
-    "description": "Welcome to the XNIL API",
-    "version": "1.0.0",
-    "title": "XNIL API",
-    "contact": {
-      "email": "xnilxhowdhury@gmail.com"
-    },
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-    }
-  },
-  "servers": [
-    {
-      "url": "https://xnil-apis.onrender.com",
-      "description": "XNIL API"
-    }
-  ],
-  "tags": [
-    {
-      "name": "DOWNLOADER",
-      "description": "Safe For Work"
-    },
-    {
-      "name": "AI",
-      "description": "Artificial Intelligence"
-    },
-    {
-      "name": "FUN",
-      "description": "Fun and Entertainment"
-    },
-    {
-      "name": "SEARCH",
-      "description": "Search Operations"
-    },
-    {
-      "name": "NSFW",
-      "description": "Not Safe For Work"
-    },
-    {
-      "name": "EDUC",
-      "description": "Educational Content"
-    },{
-        "name":"SFW",
-        "description":"API for downloading"
-    }
-  ],
-  "paths": {
-    "/api/sfw/{category}": {
-      "get": {
-        "tags": ["SFW"],
-        "summary": "Random Anime",
-        "description": "Anime API note: change the {category} choices neko, waifu, kiss, hug",
-        "operationId": "getOrderById",
-        "parameters": [
-          {
-            "name": "category",
-            "in": "path",
-            "description": "Provide Category neko, waifu, kiss, hug",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/blackbox": {
-      "get": {
-        "tags": ["AI"],
-        "summary": "Blackbox AI API",
-        "description": "black ai api is AI based on Google Lambda AI",
-        "operationId": "blackai",
-        "parameters": [
-          {
-            "name": "query",
-            "in": "query",
-            "description": "Provide a query to send a question to Blackbox AI",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/funfact": {
-      "get": {
-        "tags": ["FUN"],
-        "summary": "Get a fun fact",
-        "description": "Returns a fun fact",
-        "operationId": "getFunFact",
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "funFact": {
-                      "type": "string",
-                      "example": "Did you know that honey never spoils?"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/globalgpt": {
-      "get": {
-        "tags": ["AI"],
-        "summary": "Global GPT",
-        "description": "GlobalGpt is AI based on CHATGPT 3.5",
-        "operationId": "getGlobalGPT",
-        "parameters": [
-          {
-            "name": "q",
-            "in": "query",
-            "description": "Query parameter for Global GPT",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "content": {
-                      "type": "string",
-                      "example": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/grammar": {
-      "get": {
-        "tags": ["AI"],
-        "summary": "Grammar Check",
-        "description": "Endpoint for grammar check similar to Grammarly",
-        "operationId": "grammarCheck",
-        "parameters": [
-          {
-            "name": "query",
-            "in": "query",
-            "description": "Text to be checked for grammar",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/nsfw/{category}": {
-      "get": {
-        "tags": ["NSFW"],
-        "summary": "Get NSFW Content",
-        "description": "API that Provides Random Anime NSFW images",
-        "operationId": "getNSFWContent",
-        "parameters": [
-          {
-            "name": "category",
-            "in": "path",
-            "description": "Category of NSFW content",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/figure": {
-      "get": {
-        "tags": ["EDUC"],
-        "summary": "Get The Information of the History Figure You Search",
-        "description": "Get The Information of the History Figure You Search",
-        "operationId": "figure",
-        "parameters": [
-          {
-            "name": "name",
-            "in": "query",
-            "description": "Name of the History Figure, e.g., Adolf Hitler",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/imggen": {
-      "get": {
-        "tags": ["AI"],
-        "summary": "AI Image Generator",
-        "description": "AI Image Generator",
-        "operationId": "imggen",
-        "parameters": [
-          {
-            "name": "q",
-            "in": "query",
-            "description": "Image Description (Prompt)",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/gimage": {
-      "get": {
-        "tags": ["SEARCH"],
-        "summary": "Search Image on Google",
-        "description": "Search Image on Google",
-        "operationId": "gimage",
-        "parameters": [
-          {
-            "name": "q",
-            "in": "query",
-            "description": "Search Query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/llama": {
-      "get": {
-        "tags": ["AI"],
-        "summary": "Search Image on Google",
-        "description": "Search Image on Google",
-        "operationId": "llama",
-        "parameters": [
-          {
-            "name": "p",
-            "in": "query",
-            "description": "Prompt",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "string"
-            }
-          },
-          {
-            "name": "url",
-            "in": "query",
-            "description": "Image URL",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/logo": {
-      "get": {
-        "tags": ["FUN"],
-        "summary": "Get Logo",
-        "description": "Endpoint for retrieving logos",
-        "operationId": "getLogo",
-        "parameters": [
-          {
-            "name": "name",
-            "in": "query",
-            "description": "Name to be included in the logo",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-        }
-      }
-      }
-    },
-    "/v1/pixel": {
-      "get": {
-        "tags": ["SEARCH"],
-        "summary": "Search Image",
-        "description": "Search Image on Pixelbay.com",
-        "operationId": "getLogo",
-        "parameters": [
-          {
-            "name": "q",
-            "in": "query",
-            "description": "Provide Your Search Query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "api",
-            "in": "query",
-            "description": "Api value must be 'xnil'",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "Array"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v2/pixel": {
-      "get": {
-        "tags": ["SEARCH"],
-        "summary": "Search Image",
-        "description": "Search Image on Pixels.com",
-        "operationId": "v2",
-        "parameters": [
-          {
-            "name": "q",
-            "in": "query",
-            "description": "Provide Your Search Query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "Array"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/pnayflex": {
-      "get": {
-        "tags": ["NSFW"],
-        "summary": "Search on PnayFlix",
-        "description": "Search on PnayFlix",
-        "operationId": "pnayflix",
-        "parameters": [
-          {
-            "name": "s",
-            "in": "query",
-            "description": "Provide Your Search Query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "Array"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/poli": {
-      "get": {
-        "tags": ["AI"],
-        "summary": "Polination AI",
-        "description": "Genirate Image",
-        "operationId": "poli",
-        "parameters": [
-          {
-            "name": "q",
-            "in": "query",
-            "description": "Provide Your Query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "Array"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/quote": {
-      "get": {
-        "tags": ["QUOTE"],
-        "summary": "Generate Quote",
-        "description": "Generate a Random quote ",
-        "operationId": "generateQuote",
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "quote": {
-                      "type": "string",
-                      "example": "In the midst of chaos, there is also opportunity."
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/random/{cat}": {
-      "get": {
-        "tags": ["Random"],
-        "summary": "Random Image",
-        "description": "Get a random image based on the specified category",
-        "operationId": "getRandomImage",
-        "parameters": [
-          {
-            "name": "cat",
-            "in": "path",
-            "description": "Image category",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "nature",
-                "city",
-                "technology",
-                "food",
-                "still_life",
-                "abstract",
-                "wildlife"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "format": "url",
-                    "example": "https://example.com/random-image1.jpg"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Images not found for the specified category"
-          }
-        }
-      }
-    },
-    "/v1/unsplash": {
-      "get": {
-        "tags": ["SEARCH"],
-        "summary": "Search Images on Unsplash",
-        "description": "Search for images on Unsplash based on the specified query",
-        "operationId": "searchUnsplashImages",
-        "parameters": [
-          {
-            "name": "s",
-            "in": "query",
-            "description": "Search query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "format": "url",
-                    "example": "https://example.com/unsplash-image1.jpg"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Images not found for the specified query"
-          }
-        }
-      }
-    },
-    "/api/wallpaper": {
-      "get": {
-        "tags": ["WALLPAPER"],
-        "summary": "Get Wallpaper",
-        "description": "Search for wallpapers based on the specified query",
-        "operationId": "getWallpaper",
-        "parameters": [
-          {
-            "name": "s",
-            "in": "query",
-            "description": "Search query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "format": "url",
-                    "example": "https://example.com/wallpaper1.jpg"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Wallpapers not found for the specified query"
-          }
-        }
-      }
-    },
-    "/v2/wallpaper": {
-      "get": {
-        "tags": ["WALLPAPER"],
-        "summary": "Get Wallpaper",
-        "description": "Search for wallpapers based on the specified query",
-        "operationId": "wallpaper",
-        "parameters": [
-          {
-            "name": "s",
-            "in": "query",
-            "description": "Search query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "format": "url",
-                    "example": "https://example.com/wallpaper1.jpg"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Wallpapers not found for the specified query"
-          }
-        }
-      }
-    },
-    "/api/zedge": {
-      "get": {
-        "tags": ["WALLPAPER"],
-        "summary": "Get Wallpaper on Zedge",
-        "description": "Search for wallpapers based on the specified query",
-        "operationId": "getaWallpaper",
-        "parameters": [
-          {
-            "name": "s",
-            "in": "query",
-            "description": "Search query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "format": "url",
-                    "example": "https://example.com/wallpaper1.jpg"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Wallpapers not found for the specified query"
-          }
-        }
-      }
-    },
-    "/api/luosiallen": {
-      "get": {
-        "tags": ["AI"],
-        "summary": "Generate Image Using Replicate AI",
-        "description": "Generate Image Using Replicate AI",
-        "operationId": "imgai",
-        "parameters": [
-          {
-            "name": "q",
-            "in": "query",
-            "description": "Image Discription",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "image/png": {
-                "schema": {
-                  "type": "image/png",
-                  "items": {
-                    "type": "object",
-                    "format": "image",
-                    "example": "object"
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/ai/{ai}": {
-      "get": {
-        "tags": ["AI"],
-        "summary": "An AI API that have deffirent kind of LLMs",
-        "description": "An AI API that have deffirent kind of LLMs",
-        "operationId": "aiapi",
-        "parameters": [
-          {
-            "name": "ai",
-            "in": "path",
-            "description": "AI language Model",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "mistral",
-                "toppy",
-                "zephyr",
-                "mythomist",
-                "nous-capybara-7b",
-                "cinematika",
-                "mixtral",
-                "gemma",
-                "cinematika"
-              ]
-            }
-          },
-          {
-            "name": "q",
-            "in": "query",
-            "description": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "items": {
-                    "type": "string",
-                    "format": "application/json",
-                    "example": {
-                      "status": "int",
-                      "maintain_by": "XNiL",
-                      "content": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Images not found for the specified category"
-          }
-        }
-      }
-    },
-    "/v1/completion/claude": {
-	"get": {
-		"tags": ["AI"],
-		"summary": "Claude 3 AI by Anthropic AI",
-		"description": "Claude is a next generation AI assistant built for work and trained to be safe, accurate, and secure.",
-		"operationId": "claudeai",
-		"parameters": [
-			
-			
-			{
-				"name": "content",
-				"in": "query",
-				"description": "query",
-				"required": true,
-				"schema": {
-					"type": "string"
-				}
-			}
-		],
-		"responses": {
-			"200": {
-				"description": "Successful operation",
-				"content": {
-					"application/json": {
-						"schema": {
-							"type": "object",
-							"items": {
-								"type": "string",
-								"format": "application/json",
-								"example": {
-									"status": "int",
-									"maintain_by": "XNIL",
-									"content": "string"
-								}
-							}
-						}
-					}
-				}
-			},
-			"404": {
-				"description": "not found"
-			}
-		}
-	}
-},
-    "/api/tiktok": {
-      "get": {
-        "tags": ["DOWNLOADER"],
-        "summary": "TikTok Video Downloader",
-        "description": "API for downloading Tiktok Video",
-        "operationId": "tikdl",
-        "parameters": [
-          {
-            "name": "url",
-            "in": "query",
-            "description": "Url of the tiktok video you want to download",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "json/string": {
-                "schema": {
-                  "type": "json",
-                  "items": {
-                    "type": "object",
-                    "format": "image",
-                    "example": "object"
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    }
-  }
-}
+openapi: "3.0.0"
+info:
+  title: XNIL REST API 
+  version: "1.0.0"
+
+paths:
+  /api/sfw/category:
+    get:
+      tags: ["SFW"]
+      summary: "Random Anime"
+      description: "Anime API note: change the category choices neko, waifu, kiss, hug"
+      operationId: "getOrderById"
+      parameters:
+        - name: "category"
+          in: "path"
+          description: "Provide Category neko, waifu, kiss, hug"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '500':
+          description: "Internal Server Error"
+
+  /api/blackbox:
+    get:
+      tags: ["AI"]
+      summary: "Blackbox AI API"
+      description: "black ai api is AI based on Google Lambda AI"
+      operationId: "blackai"
+      parameters:
+        - name: "query"
+          in: "query"
+          description: "Provide a query to send a question to Blackbox AI"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: "OK"
+        '500':
+          description: "Internal Server Error"
+
+  /api/funfact:
+    get:
+      tags: ["FUN"]
+      summary: "Get a fun fact"
+      description: "Returns a fun fact"
+      operationId: "getFunFact"
+      responses:
+        '200':
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  funFact:
+                    type: "string"
+                    example: "Did you know that honey never spoils?"
+        '500':
+          description: "Internal Server Error"
+
+  /v1/globalgpt:
+    get:
+      tags: ["AI"]
+      summary: "Global GPT"
+      description: "GlobalGpt is AI based on CHATGPT 3.5"
+      operationId: "getGlobalGPT"
+      parameters:
+        - name: "q"
+          in: "query"
+          description: "Query parameter for Global GPT"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  content:
+                    type: "string"
+                    example: "string"
+        '500':
+          description: "Internal Server Error"
+
+  /api/grammar:
+    get:
+      tags: ["AI"]
+      summary: "Grammar Check"
+      description: "Endpoint for grammar check similar to Grammarly"
+      operationId: "grammarCheck"
+      parameters:
+        - name: "query"
+          in: "query"
+          description: "Text to be checked for grammar"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+        '500':
+          description: "Internal Server Error"
+
+  /api/nsfw/category:
+    get:
+      tags: ["NSFW"]
+      summary: "Get NSFW Content"
+      description: "API that Provides Random Anime NSFW images"
+      operationId: "getNSFWContent"
+      parameters:
+        - name: "category"
+          in: "path"
+          description: "Category of NSFW content"
+          required: true
+          schema:
+            type: "string"
+            format: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+        '500':
+          description: "Internal Server Error"
+
+  /api/figure:
+    get:
+      tags: ["EDUC"]
+      summary: "Get The Information of the History Figure You Search"
+      description: "Get The Information of the History Figure You Search"
+      operationId: "figure"
+      parameters:
+        - name: "name"
+          in: "query"
+          description: "Name of the History Figure, e.g., Adolf Hitler"
+          required: true
+          schema:
+            type: "string"
+            format: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+        '500':
+          description: "Internal Server Error"
+
+  /api/imggen:
+    get:
+      tags: ["AI"]
+      summary: "AI Image Generator"
+      description: "AI Image Generator"
+      operationId: "imggen"
+      parameters:
+        - name: "q"
+          in: "query"
+          description: "Image Description (Prompt)"
+          required: true
+          schema:
+            type: "string"
+            format: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+        '500':
+          description: "Internal Server Error"
+
+  /api/gimage:
+    get:
+      tags: ["SEARCH"]
+      summary: "Search Image on Google"
+      description: "Search Image on Google"
+      operationId: "gimage"
+      parameters:
+        - name: "q"
+          in: "query"
+          description: "Search Query"
+          required: true
+          schema:
+            type: "string"
+            format: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+        '500':
+          description: "Internal Server Error"
+
+  /api/llama:
+    get:
+      tags: ["AI"]
+      summary: "Search Image on Google"
+      description: "Search Image on Google"
+      operationId: "llama"
+      parameters:
+        - name: "p"
+          in: "query"
+          description: "Prompt"
+          required: true
+          schema:
+            type: "string"
+            format: "string"
+        - name: "url"
+          in: "query"
+          description: "Image URL"
+          required: false
+          schema:
+            type: "string"
+            format: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+        '500':
+          description: "Internal Server Error"
+
+  /api/logo:
+    get:
+      tags: ["FUN"]
+      summary: "Get Logo"
+      description: "Endpoint for retrieving logos"
+      operationId: "getLogo"
+      parameters:
+        - name: "name"
+          in: "query"
+          description: "Name to be included in the logo"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '500':
+          description: "Internal Server Error"
+
+  /v1/pixel:
+    get:
+      tags: ["SEARCH"]
+      summary: "Search Image"
+      description: "Search Image on Pixelbay.com"
+      operationId: "getLogo"
+      parameters:
+        - name: "q"
+          in: "query"
+          description: "Provide Your Search Query"
+          required: true
+          schema:
+            type: "string"
+        - name: "api"
+          in: "query"
+          description: "Api value must be 'xnil'"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                type: "array"
+        '500':
+          description: "Internal Server Error"
+
+  /v2/pixel:
+    get:
+      tags: ["SEARCH"]
+      summary: "Search Image"
+      description: "Search Image on Pixels.com"
+      operationId: "v2"
+      parameters:
+        - name: "q"
+          in: "query"
+          description: "Provide Your Search Query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                type: "array"
+        '500':
+          description: "Internal Server Error"
+
+  /api/pnayflex:
+    get:
+      tags: ["NSFW"]
+      summary: "Search on PnayFlix"
+      description: "Search on PnayFlix"
+      operationId: "pnayflix"
+      parameters:
+        - name: "s"
+          in: "query"
+          description: "Provide Your Search Query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                type: "array"
+        '500':
+          description: "Internal Server Error"
+
+  /api/poli:
+    get:
+      tags: ["AI"]
+      summary: "Polination AI"
+      description: "Generate Image"
+      operationId: "poli"
+      parameters:
+        - name: "q"
+          in: "query"
+          description: "Provide Your Query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: "Ok"
+          content:
+            application/json:
+              schema
+
+  /api/quote: 
+    get: 
+      tags: 
+        - "QUOTE"
+      summary: "Generate Quote"
+      description: "Generate a Random quote"
+      operationId: "generateQuote"
+      responses: 
+        '200': 
+          description: "Successful operation"
+          content: 
+            application/json: 
+              schema: 
+                type: "object"
+                properties: 
+                  quote: 
+                    type: "string"
+                    example: "In the midst of chaos, there is also opportunity."
+        '500': 
+          description: "Internal Server Error"
+
+  /api/random/cat: 
+    get: 
+      tags: 
+        - "Random"
+      summary: "Random Image"
+      description: "Get a random image based on the specified category"
+      operationId: "getRandomImage"
+      parameters:
+        - name: "cat"
+          in: "query"
+          description: "Image category"
+          required: true
+          schema: 
+            type: "string"
+            enum: 
+              - "nature"
+              - "city"
+              - "technology"
+              - "food"
+              - "still_life"
+              - "abstract"
+              - "wildlife"
+      responses: 
+        '200': 
+          description: "Successful operation"
+          content: 
+            application/json: 
+              schema: 
+                type: "array"
+                items: 
+                  type: "string"
+                  format: "url"
+                  example: "https://example.com/random-image1.jpg"
+        '404': 
+          description: "Images not found for the specified category"
+        '500': 
+          description: "Internal Server Error"
+
+  /v1/unsplash: 
+    get: 
+      tags: 
+        - "SEARCH"
+      summary: "Search Images on Unsplash"
+      description: "Search for images on Unsplash based on the specified query"
+      operationId: "searchUnsplashImages"
+      parameters:
+        - name: "s"
+          in: "query"
+          description: "Search query"
+          required: true
+          schema: 
+            type: "string"
+      responses: 
+        '200': 
+          description: "Successful operation"
+          content: 
+            application/json: 
+              schema: 
+                type: "array"
+                items: 
+                  type: "string"
+                  format: "url"
+                  example: "https://example.com/unsplash-image1.jpg"
+        '404': 
+          description: "Images not found for the specified query"
+        '500': 
+          description: "Internal Server Error"
+
+  /api/wallpaper: 
+    get: 
+      tags: 
+        - "WALLPAPER"
+      summary: "Get Wallpaper"
+      description: "Search for wallpapers based on the specified query"
+      operationId: "getWallpaper"
+      parameters:
+        - name: "s"
+          in: "query"
+          description: "Search query"
+          required: true
+          schema: 
+            type: "string"
+      responses: 
+        '200': 
+          description: "Successful operation"
+          content: 
+            application/json: 
+              schema: 
+                type: "array"
+                items: 
+                  type: "string"
+                  format: "url"
+                  example: "https://example.com/wallpaper1.jpg"
+        '404': 
+          description: "Wallpapers not found for the specified query"
+        '500': 
+          description: "Internal Server Error"
+
+  /v2/wallpaper: 
+    get: 
+      tags: 
+        - "WALLPAPER"
+      summary: "Get Wallpaper"
+      description: "Search for wallpapers based on the specified query"
+      operationId: "wallpaper"
+      parameters:
+        - name: "s"
+          in: "query"
+          description: "Search query"
+          required: true
+          schema: 
+            type: "string"
+      responses: 
+        '200': 
+          description: "Successful operation"
+          content: 
+            application/json: 
+              schema: 
+                type: "array"
+                items: 
+                  type: "string"
+                  format: "url"
+                  example: "https://example.com/wallpaper1.jpg"
+        '404': 
+          description: "Wallpapers not found for the specified query"
+        '500': 
+          description: "Internal Server Error"
+
+  /api/zedge: 
+    get: 
+      tags: 
+        - "WALLPAPER"
+      summary: "Get Wallpaper on Zedge"
+      description: "Search for wallpapers based on the specified query"
+      operationId: "getWallpaperZedge"
+      parameters:
+        - name: "s"
+          in: "query"
+          description: "Search query"
+          required: true
+          schema: 
+            type: "string"
+      responses: 
+        '200': 
+          description: "Successful operation"
+          content: 
+            application/json: 
+              schema: 
+                type: "array"
+                items: 
+                  type: "string"
+                  format: "url"
+                  example: "https://example.com/wallpaper1.jpg"
+        '404': 
+          description: "Wallpapers not found for the specified query"
+        '500': 
+          description: "Internal Server Error"
+
+  /api/luosiallen: 
+    get: 
+      tags: 
+        - "AI"
+      summary: "Generate Image Using Replicate AI"
+      description: "Generate Image Using Replicate AI"
+      operationId: "imgai"
+      parameters:
+        - name: "q"
+          in: "query"
+          description: "Image Description"
+          required: true
+          schema: 
+            type: "string"
+      responses: 
+        '200': 
+          description: "OK"
+          content: 
+            image/png: 
+              schema: 
+                type: "string"
+                format: "binary"
+        '500': 
+          description: "Internal Server Error"
+
+  /ai/ai: 
+    get: 
+      tags: 
+        - "AI"
+      summary: "An AI API with different kinds of LLMs"
+      description: "An AI API with different kinds of LLMs"
+      operationId: "aiapi"
+      parameters:
+        - name: "ai"
+          in: "path"
+          description: "AI language Model"
+          required: true
+          schema: 
+            type: "string"
+            enum: 
+              - "mistral"
+              - "toppy"
+              - "zephyr"
+              - "mythomist"
+              - "nous-capybara-7b"
+              - "cinematika"
+              - "mixtral"
+              - "gemma"
+              - "cinematika"
+        - name: "q"
+          in: "query"
+          description: "query"
+          required: true
+          schema: 
+            type: "string"
+      responses: 
+        '200': 
+          description: "Successful operation"
+          content: 
+            application/json: 
+              schema: 
+                type: "object"
+                properties:
+                  status: 
+                    type: "integer"
+                    example: 200
+                  maintain_by: 
+                    type: "string"
+                    example: "XNiL"
+                  content: 
+                    type: "string"
+        '404': 
+          description: "Images not found for the specified category"
+        '500': 
+          description: "Internal Server Error"
+
+  /v1/completion/claude: 
+    get: 
+      tags: 
+        - "AI"
+      summary: "Claude 3 AI by Anthropic AI"
+      description: "Claude is a next generation AI assistant built for work and trained to be safe, accurate, and secure."
+      operationId: "claudeai"
+      parameters:
+        - name: "content"
+          in: "query"
+          description: "query"
+          required: true
+          schema: 
+            type: "string"
+      responses: 
+        '200': 
+          description: "Successful operation"
+          content: 
+            application/json: 
+              schema: 
+                type: "object"
+                properties:
+                  status: 
+                    type: "integer"
+                    example: 200
+                  maintain_by: 
+                    type: "string"
+                    example: "XNIL"
+                  content: 
+                    type: "string"
+        '404': 
+          description: "not found"
+        '500': 
+          description: "Internal Server Error"
+
+  /api/tiktok: 
+    get: 
+      tags: 
+        - "DOWNLOADER"
+      summary: "TikTok Video Downloader"
+      description: "API for downloading TikTok Video"
+      operationId: "tikdl"
+      parameters:
+        - name: "url"
+          in: "query"
+          description: "URL of the TikTok video you want to download"
+          required: true
+          schema: 
+            type: "string"
+      responses: 
+        '200': 
+          description: "OK"
+          content: 
+            application/json: 
+              schema: 
+                type: "object"
+                properties:
+                  url: 
+                    type: "string"
+                    format: "url"
+                    example: "https://example.com/tiktok-video.mp4"
+        '500': 
+          description: "Internal Server Error"
+  /api/fbdl: 
+    get: 
+      tags: 
+        - "DOWNLOADER"
+      summary: "Facebook Video Downloader"
+      description: "API for downloading Facebook Video"
+      operationId: "fbdl"
+      parameters:
+        - name: "url"
+          in: "query"
+          description: "URL of the Facebook video you want to download"
+          required: true
+          schema: 
+            type: "string"
+      responses: 
+        '200': 
+          description: "OK"
+          content: 
+            application/json: 
+              schema: 
+                type: "object"
+                properties:
+                  url: 
+                    type: "string"
+                    format: "url"
+                    example: "https://example.com/Facebook-video.mp4"
+        '500': 
+          description: "Internal Server Error"
