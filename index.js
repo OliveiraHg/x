@@ -97,6 +97,7 @@ const apiModules = [
   "bard",
   "mil",
   "quote",
+  "bing",
   "easyai",
 ];
 

@@ -49,5 +49,6 @@
   "/api/bard",
   "/api/random-military-video",
   "/api/quote",
+  "api/bing",
   "/request-count"
 ]

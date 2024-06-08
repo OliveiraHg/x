@@ -699,3 +699,31 @@ paths:
                     example: "https://example.com/Facebook-video.mp4"
         '500': 
           description: "Internal Server Error"
+  /api/bing:
+    get:
+      tags: ["SEARCH"]
+      summary: "Search Image"
+      description: "Search Image on bing.com"
+      operationId: "getLogo2"
+      parameters:
+        - name: "prompt"
+          in: "query"
+          description: "Provide Your Search Query"
+          required: true
+          schema:
+            type: "string"
+        - name: "cookie"
+          in: "query"
+          description: "cookie _u bing.com"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                type: "array"
+        '500':
+          description: "Internal Server Error"

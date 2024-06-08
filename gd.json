@@ -1,5 +1,6 @@
 const apiModules = [
 	"hackergpt",
+	"bing",
 	"unplash",
 	"pixel-v2",
 	"pixel",
