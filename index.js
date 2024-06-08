@@ -148,7 +148,7 @@ app.listen(port, () => {
 
   app.use((req, res, next) => {
     res.status(home).sendFile(__dirname + "/home.html");
-
+  });
 app.listen(port, () => {
   app.use("/docs", express.static(path.join(__dirname, "page")));
 
