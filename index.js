@@ -159,7 +159,7 @@ app.listen(port, () => {
   printTextArt("REST API");
   printTextArt("XNIL API");
   printTextArt(`DEVELOPED BY \n\n\nXNIL\n\n DEV`);
-});
+}});
 
 const figlet = require("figlet");
 
@@ -172,7 +172,7 @@ function printTextArt(message) {
     console.log(data);
   });
 }
-
+  
 const http = require("http");
 
 function selfPing() {
